@@ -68,7 +68,7 @@ export default function ChatTopbar({
       } catch (error) {
         console.error("Error fetching models:", error);
         setCurrentModel("Select model");
-        setModels([]);
+        setModels(["llama2", "llava", "mistral"]);
       }
     };
 
