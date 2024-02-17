@@ -53,12 +53,12 @@ export default function ChatTopbar({
 
         const data = await response.json();
         const modelNames = data.models.map((model: any) => model.name);
-if (modelNames){
-  setModels(modelNames);
-} else {
-  setModels(["llama2", "llava", "mistral"])
-}
-        
+        console.log(modelNames);
+        if (modelNames) {
+          setModels(modelNames);
+        } else {
+          setModels(["llama2", "llava", "mistral"]);
+        }
 
         if (!localStorage.getItem("selectedModel")) {
           setCurrentModel(modelNames[0]);
