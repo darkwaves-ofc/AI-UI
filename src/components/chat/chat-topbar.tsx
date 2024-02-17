@@ -39,38 +39,37 @@ export default function ChatTopbar({
 
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            const response = await fetch("/api/tags", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error("Failed to fetch models");
-            }
-
-            const data = await response.json();
-            const modelNames = data.models.map((model:any) => model.name);
-
-            setModels(modelNames);
-
-            if (!localStorage.getItem("selectedModel")) {
-                setCurrentModel(modelNames[0]);
-                setSelectedModel(modelNames[0]);
-                localStorage.setItem("selectedModel", modelNames[0]);
-            }
-        } catch (error) {
-            console.error("Error fetching models:", error);
-            setCurrentModel("Select model");
-            setModels([]);
+      try {
+        const response = await fetch("/api/tags", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log(response);
+        if (!response.ok) {
+          throw new Error("Failed to fetch models");
         }
+
+        const data = await response.json();
+        const modelNames = data.models.map((model: any) => model.name);
+
+        setModels(modelNames);
+
+        if (!localStorage.getItem("selectedModel")) {
+          setCurrentModel(modelNames[0]);
+          setSelectedModel(modelNames[0]);
+          localStorage.setItem("selectedModel", modelNames[0]);
+        }
+      } catch (error) {
+        console.error("Error fetching models:", error);
+        setCurrentModel("Select model");
+        setModels([]);
+      }
     };
 
     fetchData();
-}, []);
-
+  }, []);
 
   const handleModelChange = (model: string) => {
     setCurrentModel(model);

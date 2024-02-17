@@ -3,7 +3,7 @@ export async function GET(res: Response) {
     process.env.NEXT_PUBLIC_OLLAMA_URL + "/api/tags",
     {
       method: "GET",
-    }
+    },
   );
   console.log(response)
   if (!response) {
