@@ -52,7 +52,7 @@ export default function ChatTopbar({
             }
 
             const data = await response.json();
-            const modelNames = data.models.map((model) => model.name);
+            const modelNames = data.models.map((model:any) => model.name);
 
             setModels(modelNames);
 

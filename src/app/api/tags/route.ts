@@ -5,6 +5,7 @@ export async function POST(res: Response) {
       method: "GET",
     }
   );
+  console.log(response)
   if (!response) {
     return console.log("error");
   }
