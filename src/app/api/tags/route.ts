@@ -1,4 +1,4 @@
-export async function POST(res: Response) {
+export async function GET(res: Response) {
   const response: any = await fetch(
     process.env.NEXT_PUBLIC_OLLAMA_URL + "/api/tags",
     {
