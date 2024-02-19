@@ -3,9 +3,8 @@ import { ChatOllama } from "@langchain/community/chat_models/ollama";
 import { AIMessage, HumanMessage } from "@langchain/core/messages";
 import { BytesOutputParser } from "@langchain/core/output_parsers";
 
-
 export async function POST(req: Request) {
-  const { messages, selectedModel } = await req.json();
+  const { messages, selectedModel, images } = await req.json();
 
   const model = new ChatOllama({
     baseUrl: process.env.NEXT_PUBLIC_OLLAMA_URL,
@@ -21,10 +20,10 @@ export async function POST(req: Request) {
         m.role == "user"
           ? new HumanMessage(m.content)
           : new AIMessage(m.content)
-      )
+      ),
     );
 
-    console.log(stream);
+  console.log(stream);
 
   return new StreamingTextResponse(stream);
 }

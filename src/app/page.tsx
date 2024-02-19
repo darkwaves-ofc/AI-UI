@@ -24,6 +24,7 @@ export default function Home() {
   const [chatId, setChatId] = React.useState<string>("");
   const [selectedModel, setSelectedModel] = React.useState<string>("");
   const [open, setOpen] = React.useState(false);
+  const [images, setImages] = React.useState([""]);
 
   React.useEffect(() => {
     if (!isLoading && !error && chatId && messages.length > 0) {
@@ -80,6 +81,7 @@ export default function Home() {
         stop={stop}
         navCollapsedSize={10}
         defaultLayout={[30, 160]}
+        setImages={setImages}
       />
       <DialogContent className="flex flex-col space-y-4">
     <DialogHeader className="space-y-2">

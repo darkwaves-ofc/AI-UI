@@ -16,9 +16,10 @@ export interface ChatProps {
   isLoading: boolean;
   error: undefined | Error;
   stop: () => void;
+  setImages:React.Dispatch<React.SetStateAction<string[]>>
   }
 
-export default function Chat ({ messages, input, handleInputChange, handleSubmit, isLoading, error, stop, setSelectedModel, chatId }: ChatProps) {
+export default function Chat ({ messages, input, handleInputChange, handleSubmit, isLoading, error, stop, setSelectedModel, chatId,setImages }: ChatProps) {
 
   return (
     <div className="flex flex-col justify-between w-full h-full  ">
@@ -34,6 +35,7 @@ export default function Chat ({ messages, input, handleInputChange, handleSubmit
           isLoading={isLoading}
           error={error}
           stop={stop}
+          setImages={setImages}
         />
 
         <ChatBottombar 
@@ -45,6 +47,7 @@ export default function Chat ({ messages, input, handleInputChange, handleSubmit
           isLoading={isLoading}
           error={error}
           stop={stop}
+          setImages={setImages}
         />
 
     </div>

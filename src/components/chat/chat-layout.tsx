@@ -36,6 +36,7 @@ export function ChatLayout({
   stop,
   chatId,
   setSelectedModel,
+  setImages
 }: MergedProps) {
   const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);
   const [isMobile, setIsMobile] = useState(false);
@@ -117,6 +118,7 @@ export function ChatLayout({
            isLoading={isLoading}
            error={error}
            stop={stop}
+           setImages={setImages}
         />
       </ResizablePanel>
     </ResizablePanelGroup>

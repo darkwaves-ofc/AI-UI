@@ -20,10 +20,27 @@ export default function ChatBottombar({
   isLoading,
   error,
   stop,
+  setImages
 }: ChatProps) {
+  // const [images, setImages] = React.useState([""]);
+
   const [message, setMessage] = React.useState(input);
   const [isMobile, setIsMobile] = React.useState(false);
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = React.useRef<HTMLInputElement>(null); // Define ref for file input
+
+  const uploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = reader.result as string;
+        setImages((prev) => [...prev, base64String]);
+        console.log(base64String); // Here you can use the base64String as needed
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   React.useEffect(() => {
     const checkScreenWidth = () => {
@@ -67,19 +84,31 @@ export default function ChatBottombar({
             },
           }}
         >
-          <form onSubmit={handleSubmit} className="w-full items-center flex relative gap-2">
+          <form
+            onSubmit={handleSubmit}
+            className="w-full items-center flex relative gap-2"
+          >
             <div className="flex">
-              <Link
-                href="#"
+              <input
+                type="file"
+                accept="image/*"
+                style={{ display: "none" }}
+                onChange={uploadImage}
+                ref={fileInputRef} // Assign file input ref
+              />
+              <Button
+                variant="secondary"
+                size="icon"
                 className={cn(
-                  buttonVariants({ variant: "secondary", size: "icon" }),
+                  buttonVariants({ variant: "secondary", size: "icon" })
                 )}
+                onClick={() => fileInputRef.current?.click()} // Trigger file input click
               >
                 <ImageIcon className="w-6 h-6 text-muted-foreground" />
-              </Link>
+              </Button>
             </div>
 
-            <TextareaAutosize 
+            <TextareaAutosize
               autoComplete="off"
               value={input}
               ref={inputRef}
@@ -89,15 +118,26 @@ export default function ChatBottombar({
               placeholder="Ask Ollama anything..."
               className="border-input max-h-20 px-5 py-4 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 w-full border rounded-full flex items-center h-14 resize-none overflow-hidden dark:bg-card/35"
             />
-              {!isLoading ? (
-                <Button className="shrink-0" variant="secondary" size="icon" type="submit" disabled={isLoading || !input.trim()}>
+            {!isLoading ? (
+              <Button
+                className="shrink-0"
+                variant="secondary"
+                size="icon"
+                type="submit"
+                disabled={isLoading || !input.trim()}
+              >
                 <PaperPlaneIcon className=" w-6 h-6 text-muted-foreground" />
               </Button>
-              ) : (
-                <Button className="shrink-0" variant="secondary" size="icon" onClick={stop} >
-              <StopIcon className="w-6 h-6  text-muted-foreground" />
-            </Button>
-              )}
+            ) : (
+              <Button
+                className="shrink-0"
+                variant="secondary"
+                size="icon"
+                onClick={stop}
+              >
+                <StopIcon className="w-6 h-6  text-muted-foreground" />
+              </Button>
+            )}
           </form>
         </motion.div>
       </AnimatePresence>

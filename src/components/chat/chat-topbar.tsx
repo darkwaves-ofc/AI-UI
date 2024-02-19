@@ -57,7 +57,7 @@ export default function ChatTopbar({
         if (modelNames) {
           setModels(modelNames);
         } else {
-          setModels(["llama2", "llava", "mistral"]);
+          setModels(["llama2:13b", "llava:13b", "mistral"]);
         }
 
         if (!localStorage.getItem("selectedModel")) {
@@ -68,7 +68,7 @@ export default function ChatTopbar({
       } catch (error) {
         console.error("Error fetching models:", error);
         setCurrentModel("Select model");
-        setModels(["llama2", "llava", "mistral"]);
+        setModels(["llama2:13b", "llava:13b", "mistral"]);
       }
     };
 

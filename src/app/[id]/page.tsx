@@ -15,10 +15,11 @@ export default function Page({ params }: { params: { id: string } }) {
     isLoading,
     error,
     stop,
-    setMessages,
+    setMessages
   } = useChat();
   const [chatId, setChatId] = React.useState<string>("");
   const [selectedModel, setSelectedModel] = React.useState<string>("mistral");
+  const [images, setImages] = React.useState([""]);
 
   React.useEffect(() => {
     if (params.id) {
@@ -70,6 +71,7 @@ export default function Page({ params }: { params: { id: string } }) {
         stop={stop}
         navCollapsedSize={10}
         defaultLayout={[30, 160]}
+        setImages={setImages}
       />
     </main>
   );
