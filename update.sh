@@ -54,10 +54,6 @@ main() {
     npm run start | while IFS= read -r line; do
         echo -e "${YELLOW}${line}${NC}"
     done
-    if [ $? -ne 0 ]; then
-        show_error "Error: Failed to start server."
-        exit 1
-    fi
     
     echo -e "${GREEN}Update and build process complete.${NC}"
     
