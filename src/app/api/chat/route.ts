@@ -4,7 +4,7 @@ import { AIMessage, HumanMessage } from "@langchain/core/messages";
 import { BytesOutputParser } from "@langchain/core/output_parsers";
 
 export async function POST(req: Request) {
-  const { messages, selectedModel, images } = await req.json();
+  const { messages, selectedModel ,images } = await req.json();
 
   const model = new ChatOllama({
     baseUrl: process.env.NEXT_PUBLIC_OLLAMA_URL,
