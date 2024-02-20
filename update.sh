@@ -8,10 +8,6 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Function to display a message box
-show_message() {
-    whiptail --title "${GREEN}Message${NC}" --msgbox "$1" 8 50
-}
-
 # Function to display an error message
 show_error() {
     echo -e "${RED}$1${NC}"
@@ -68,9 +64,7 @@ main() {
     # Kill progress dialog
     kill $progress_pid
     
-    # Display completion message
-    show_message "${GREEN}Update and build process complete.${NC}"
-}
+    }
 
 # Execute main function
 main
