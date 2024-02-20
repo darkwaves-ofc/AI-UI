@@ -123,7 +123,7 @@ export function Sidebar({
                 className="dark:invert hidden 2xl:block"
               />
             )}
-            New chat
+            New chat 123
           </div>
           <SquarePen size={18} className="shrink-0 w-4 h-4" />
         </Button>
