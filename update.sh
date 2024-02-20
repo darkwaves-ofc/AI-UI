@@ -50,9 +50,13 @@ main() {
     npm install --force &>/dev/null
     echo -e "${BLUE}Installing npm packages...${NC}"
     echo -e "${BLUE}Building project... and starting server...${NC}"
-    npm run build
-    npm run start
-    echo -e "${BLUE}Update and build process complete.${NC}"
+    npm run build | while IFS= read -r line; do
+        echo -e "${YELLOW}${line}${NC}"
+    done
+    npm run start | while IFS= read -r line; do
+        echo -e "${YELLOW}${line}${NC}"
+    done
+    echo -e "${GREEN}Update and build process complete.${NC}"
     
     # Kill progress dialog
     kill $progress_pid
