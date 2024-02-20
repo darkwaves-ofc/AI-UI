@@ -49,10 +49,9 @@ main() {
     echo -e "${BLUE}Pulling latest changes...${NC}"
     npm install --force &>/dev/null
     echo -e "${BLUE}Installing npm packages...${NC}"
-    rm -rf dist &>/dev/null
-    echo -e "${BLUE}Removing 'dist' directory...${NC}"
     echo -e "${BLUE}Building project... and starting server...${NC}"
-    npm run preview
+    npm run build
+    npm run start
     echo -e "${BLUE}Update and build process complete.${NC}"
     
     # Kill progress dialog
