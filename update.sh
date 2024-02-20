@@ -7,22 +7,6 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Function to display progress using whiptail
-show_progress() {
-    {
-        sleep 1
-        echo "10"
-        sleep 1
-        echo "30"
-        sleep 1
-        echo "60"
-        sleep 1
-        echo "80"
-        sleep 1
-        echo "100"
-    } | whiptail --gauge "${BLUE}Updating and Building${NC}"  50 06
-}
-
 # Function to display a message box
 show_message() {
     whiptail --title "${GREEN}Message${NC}" --msgbox "$1" 8 50
